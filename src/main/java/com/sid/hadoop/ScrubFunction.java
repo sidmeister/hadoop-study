@@ -1,4 +1,4 @@
-package com.hotwire.biti.gcs;
+package com.sid.hadoop;
 
 
 import cascading.flow.FlowProcess;
@@ -34,7 +34,7 @@ public class ScrubFunction extends BaseOperation implements Function
   {
     Tuple result = new Tuple();
     TupleEntry argument = functionCall.getArguments();
-    System.out.println(argument.toString());
+    //System.out.println(argument.toString());
     for (int j = 0; j < argument.getFields().size(); j++) {
     String s = argument.getString( j);
     s = (s == null || s.isEmpty() ||  s.toLowerCase().contains("null")  ) ? new String("") : (s.contains("&") ? s.replace("&", "|||"):argument.getString( j ));
@@ -49,7 +49,7 @@ public class ScrubFunction extends BaseOperation implements Function
     }*/
     result.add(s);
     }
-    System.out.println(result);
+    //System.out.println(result);
     functionCall.getOutputCollector().add(result);
   }
 }

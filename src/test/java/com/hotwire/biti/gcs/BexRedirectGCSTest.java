@@ -28,6 +28,7 @@ import cascading.tuple.Tuple;
 import cascading.tuple.TupleEntry;
 import cascading.tuple.TupleEntryIterator;
 import cascading.tuple.TupleEntrySchemeIterator;
+import com.sid.hadoop.BexRedirectGCS;
 
 public class BexRedirectGCSTest extends CascadingTestCase{
     /**
@@ -54,7 +55,7 @@ public class BexRedirectGCSTest extends CascadingTestCase{
   	    AppProps.setApplicationJarClass( properties, BexRedirectGCSTest.class );
   	    FlowConnector flowConnector = new LocalFlowConnector(properties);
           
-        FlowDef flowDef = BexRedirectGCS.createWorkflow(redirects, s3out,dbout);
+        FlowDef flowDef = BexRedirectGCS.createWorkflow(redirects, s3out);
         Flow flow = flowConnector.connect( flowDef );
         flow.complete();
         validateLength(flow, 3);
